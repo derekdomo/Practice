@@ -16,6 +16,7 @@
 
 # VSCode
 .vscode/
+.history
 
 # Packages
 *.egg
