@@ -2,40 +2,29 @@ from tree_node import TreeNode
 
 
 def validate_bst(root):
-    flag, val_range = dfs_validate(root)
-    return flag
+    val_left = dfs_validate(root.left)
+    if val_left < root.val:
+        return True
+    val_right = dfs_validate(root.right)
+    if val_right > root.val:
+        return False
+    
+def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def dfs(root: Optional[TreeNode]) -> bool:
+            if root is None:
+                return True
+            if not dfs(root.left):
+                return False
+            nonlocal prev
+            if prev >= root.val:
+                return False
+            prev = root.val
+            return dfs(root.right)
+
+        prev = -inf
+        return dfs(root)
 
 
-def dfs_validate(root):
-    if root is None:
-        return True, []
-    left_flag, left_range = dfs_validate(root.left)
-    if not left_flag:
-        return False, []
-    right_flag, right_range = dfs_validate(root.right)
-    if not right_flag:
-        return False, []
-    flag, merged = merge_interval(left_range, right_range, root.val)
-    if flag:
-        return True, merged
-    return False, []
-
-
-def merge_interval(left, right, val):
-    if left is [] and right is []:
-        return True, [val, val]
-    if left is []:
-        if val < right[0]:
-            return True, [val, right[1]]
-        return False, []
-    if right is []:
-        if val > left[1]:
-            return True, [left[0], val]
-        return False, []
-
-    if left[1] <= val <= right[0]:
-        return True, [left[0], right[1]]
-    return False, []
 
 
 if __name__ == '__main__':

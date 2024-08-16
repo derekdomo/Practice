@@ -1,2 +1,2 @@
 # Practice
-Placeholder for Code Pracice. It will be separated by catergories and written in python.
+Placeholder for Code Practice. It will be separated by categories and written in python.
