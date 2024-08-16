@@ -17,4 +17,3 @@ class Solution:
 if __name__ == "__main__":
     sol = Solution()
     print sol.generate_bracket_combinations(3)
-
